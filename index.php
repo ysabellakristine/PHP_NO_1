@@ -1,3 +1,10 @@
+<?php 
+session_start();
+
+if(!isset($_SESSION['username'])) {
+	header('Location: login.php');
+} 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,33 +13,7 @@
 	<title>Document</title>
 </head>
 <body>
-	<?php session_start(); ?>
-
-	<h1>Fill in the input fields below</h1>
-	
-	<h2>
-		User logged in:
-		<?php
-		if(isset($_SESSION['firstName'])) {
-			echo $_SESSION['firstName'];
-		}
-		?>		
-	</h2>
-
-	<h2>
-		User password:
-		<?php
-		if(isset($_SESSION['password'])) {
-			echo $_SESSION['password'];
-		}
-		?>		
-	</h2>
-	<a href="unset.php">Logout</a>
-
-	<form action="handleForm.php" method="POST">
-		<p><input type="text" placeholder="First name here" name="firstName"></p>
-		<p><input type="password" placeholder="Password here" name="password"></p>
-		<p><input type="submit" value="Submit" name="submitBtn"></p>
-	</form>
+	<h1>Welcome! <?php echo $_SESSION['username'];?></h1>
+	<a href="logout.php">Logout</a>
 </body>
 </html>
